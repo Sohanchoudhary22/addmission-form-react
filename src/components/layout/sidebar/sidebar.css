@@ -1,0 +1,26 @@
+.button_container{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    gap: 20px;
+   
+  }
+  .button{
+    border: none;
+    width: 100%;
+    height: 35px;
+    border-radius: 15px;
+    color:rgb(226, 222, 222);
+    font-size: 19px;
+    padding: 8px;
+    text-decoration: none;
+    background-color: rgb(102, 177, 161);
+  }
+  .button:hover{
+    background-color: rgb(193, 141, 206);
+    cursor: pointer;
+  }
+  h2{
+    color: rgb(241, 245, 245);
+  }
