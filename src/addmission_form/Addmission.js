@@ -1,4 +1,4 @@
-import FormCreateObj from "../components/common/formcreate/Formcreate";
+import FormCreateObj from "../components/formcreate/Formcreate";
 import "./addmission.css";
 import React from "react";
 
@@ -37,14 +37,6 @@ const AddmissionData = {
       subtype: "date",
     },
     {
-      id: "gender",
-      lable: "Gender",
-      type: "input",
-      name: "gender",
-      subtype: "text",
-      placeholder: "    Enter your gender      ",
-    },
-    {
       id: "email",
       lable: "Email",
       type: "input",
@@ -61,13 +53,75 @@ const AddmissionData = {
       placeholder: "    Enter your mobile number      ",
     },
     {
-      id: "address",
-      lable: "Address",
-      type: "input",
-      name: "address",
-      subtype: "text",
-      placeholder: "    Enter your address      ",
+      id: "city",
+      lable: "City",
+      type: "select",
+      name: "city",
+      placeholder: "    Enter your city      ",
+      option:[
+        {
+          lable:"Jaipur",
+          value:"jaipur"
+        },
+        {
+          lable:"Delhi",
+          value:"delhi"
+        },
+        {
+          lable:"Haryana",
+          value:"haryana"
+        },
+        {
+          lable:"Punjab",
+          value:"punjab"
+        },
+        {
+          lable:"Rajasthan",
+          value:"rajasthan"
+        },
+      ]
     },
+    {
+      id:"gender",
+      lable:"Gender",
+      type:"radio",
+      name:"gender",
+      option:[
+        {
+          lable:"Male",
+          value:"male",
+        },
+        {
+          lable:"Female",
+          value:"female",
+        },
+        {
+          lable:"Other",
+          value:"other",
+        }
+      ]
+    },
+    {
+      id:"checkbox",
+      lable:"Checkbox",
+      type:"checkbox",
+      name:"checkbox",
+      option:[
+        {
+          lable:"UI/UX",
+          value:"ui/ux"          
+        },
+        {
+          lable:"JAVA",
+          value:"java"
+        },
+        {
+          lable:"DATABASE",
+          value:"database"
+        }
+      ]
+    },
+
   ],
 };
 
@@ -77,9 +131,20 @@ const AddmissionForm = () => {
 
   const _handleChange = (e) => {
     const { name, value } = e.target;
+    let val= value;
+    if(e.target.name=== "checkbox"){
+      val =formObj?.checkbox ?? [];
+      let isExists = val?.some(el => el === value);
+      if(isExists){
+        val =val?.filter(el => el !==value);
+      }else {
+        val.push(value);
+      }
+    }
+
     setFormObj((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: val,
     }));
   };
   console.log(formObj);
@@ -102,7 +167,7 @@ const AddmissionForm = () => {
 
   console.log(tableData);
 
-  // form Reset function........
+  // ..............form Reset function.............//
   const _resetForm = (e) => {
     e.preventDefault();
     setFormObj(null);
@@ -113,6 +178,7 @@ const AddmissionForm = () => {
 
       <div className="addmission_parent">
         <FormCreateObj formArr={AddmissionData.form} value={AddmissionData.form.name} onChangeCb={_handleChange} formObj={formObj}/>
+          
 
         <div className="button_cont">
           <button className="button1" onClick={_submitData}>Submit</button>

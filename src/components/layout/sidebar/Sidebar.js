@@ -18,7 +18,7 @@ function Sidebar (){
           <div className="button_container">
           {sidebarData.content.map((ele) =>{
             return( 
-            <Link to ={`/dashboard_addmission`} key={ele.key} className= "button">{ele.lable}</Link>
+            <Link to ={`/addmission_form`} key={ele.key} className= "button">{ele.lable}</Link>
         
         )
             
